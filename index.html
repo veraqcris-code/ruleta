@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Fiesta Extrema</title>
+    <!-- Vinculamos el archivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gira la Ruleta</h1>
+        
+        <div class="roulette-container">
+            <!-- El indicador visual que marca qué porción ganó -->
+            <div class="pointer"></div>
+            
+            <!-- La ruleta en sí -->
+            <div class="roulette" id="roulette">
+                
+            </div>
+        </div>
+
+        <button id="spinBtn" class="spin-button">GIRAR</button>
+
+        <!-- Ventana modal donde aparecerá el reto (oculta por defecto) -->
+        <div id="challengeModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="modalLevel">Nivel...</h2>
+                <p id="modalText">Aquí aparecerá el reto.</p>
+                <button id="closeModalBtn" class="close-btn">Aceptar Reto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vinculamos el archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
