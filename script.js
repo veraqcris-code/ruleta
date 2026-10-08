@@ -5,6 +5,7 @@
 const retosVerdes = [
     "NADA te salvaste de un shot.",
     "Pregunta: ¿Qué idioma te gustaría aprender mágicamente?",
+    "Si hay una persona de test oscura a tu izquierda o derecha toma un shot",
     "Pregunta: ¿Cuál es tu recuerdo más feliz de la infancia?",
     "Pregunta: ¿Qué libro o película te ha hecho llorar?",
     "Pregunta: ¿Cuál es tu comida reconfortante por excelencia?",
@@ -115,7 +116,7 @@ const retosNaranjas = [
     "TOMAN los que han salido con 2 personas a la vez",
     "Reto: Haz el mini mini",
     "Nada, te salvaste viejo",
-    "Si eres witi todos te yapean un sol el que no le yapea toma un shot",
+    "Si eres witi todos te yapean diez centimos el que no le yapea toma un shot",
     "si a tu derecha o izquierda esta rodrigo puruguay toma 2 shots",
     "Ahora todos se referiran a ti como 'imbecil' durante 2 vueltas"   
 ]; // Aquí irían tus 50 retos
@@ -123,12 +124,13 @@ const retosNaranjas = [
 const retosRojos = [
     "La persona de tu derecha tiene 2 minutos para subir un estado(whattsap,facebook o instagram) gracioso en tu celular que debe permanecer por 20 minutos o tomas 5 SHOTS",
     "Quitate una prenda permanentemente",
-    "Verdugo: elige quien toma un shot",
+    "HABLA COMO SERRANO 3 VUELTAS O TOMA 3 SHOTS",
     "Reto: Tienes 5 minutos para hacer reir a alguien de la sala si nadie se rie o hace una minima sonrisa toma 3 shots",
-    "Manda un audio a tu pareja gritandole el sixseven si no tienes pareja a tus padres o toma 2 shots",
+    "Manda un audio a tu pareja gritandole el sixseven si no tienes pareja a alguien de confianza o toma 2 shots",
     "TOMAS 3 SHOTS",
-    "Sube un edit que tiene vera preparado en su celular en tu estado por 20 minutos o toma 5 shots"
-]; // Aquí irían tus 10 retos
+    "Muestra la ultima persona con la que hablaste o toma 3 shots",
+    "cada que digas una mala palabra tomas un shot durante 3 vueltas"
+]; 
 
 // ... (Aquí arriba mantienes tus arreglos de retosVerdes, retosNaranjas y retosRojos) ...
 
