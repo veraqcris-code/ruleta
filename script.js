@@ -130,7 +130,9 @@ const retosRojos = [
     "Sube un edit que tiene vera preparado en su celular en tu estado por 20 minutos o toma 5 shots"
 ]; // Aquí irían tus 10 retos
 
-// 2. Variables de control y referencias al HTML
+// ... (Aquí arriba mantienes tus arreglos de retosVerdes, retosNaranjas y retosRojos) ...
+
+// Variables de control y referencias al HTML
 const rouletteElement = document.getElementById('roulette');
 const spinBtn = document.getElementById('spinBtn');
 const modal = document.getElementById('challengeModal');
@@ -141,7 +143,7 @@ const closeModalBtn = document.getElementById('closeModalBtn');
 let currentRotation = 0;
 let isSpinning = false;
 
-// 3. Función principal para Girar la Ruleta
+// Función principal para Girar la Ruleta
 spinBtn.addEventListener('click', () => {
     if (isSpinning) return; // Evita que giren mientras ya está girando
     
@@ -155,71 +157,85 @@ spinBtn.addEventListener('click', () => {
     let colorTexto = "";
     let retoSeleccionado = "";
     
-    // Configuración para el ángulo visual donde debe detenerse
     let anguloObjetivo = 0; 
     let rangoMin = 0;
     let rangoMax = 0;
 
-    // Lógica matemática de las probabilidades pedidas
     if (prob <= 0.70) {
         // 70% VERDE (Suave)
         ganadorNivel = "Nivel Suave";
         colorTexto = "#2ecc71";
-        // Selecciona un reto aleatorio de la lista verde
-        retoSeleccionado = retosVerdes[Math.floor(Math.random() * retosVerdes.length)];
-        
-        // La zona verde visualmente va del grado 0 al 252 (aprox)
-        // El puntero está arriba (0 grados), queremos que caiga en una zona verde
         rangoMin = 10;
         rangoMax = 240; 
+        
+        // Verificar si quedan retos verdes
+        if (retosVerdes.length > 0) {
+            const indiceAleatorio = Math.floor(Math.random() * retosVerdes.length);
+            retoSeleccionado = retosVerdes[indiceAleatorio];
+            retosVerdes.splice(indiceAleatorio, 1); // Extrae y elimina el reto de la lista
+        } else {
+            retoSeleccionado = "¡Ya completaron todos los retos de nivel Suave!";
+        }
 
     } else if (prob > 0.70 && prob <= 0.95) {
         // 25% NARANJA (Intermedio)
         ganadorNivel = "Nivel Medio";
         colorTexto = "#f39c12";
-        retoSeleccionado = retosNaranjas[Math.floor(Math.random() * retosNaranjas.length)];
-        
-        // La zona naranja visual va del grado 252 al 342
         rangoMin = 260;
         rangoMax = 330;
+
+        // Verificar si quedan retos naranjas
+        if (retosNaranjas.length > 0) {
+            const indiceAleatorio = Math.floor(Math.random() * retosNaranjas.length);
+            retoSeleccionado = retosNaranjas[indiceAleatorio];
+            retosNaranjas.splice(indiceAleatorio, 1); // Extrae y elimina el reto de la lista
+        } else {
+            retoSeleccionado = "¡Ya completaron todos los retos de nivel Medio!";
+        }
 
     } else {
         // 5% ROJO (Extremo)
         ganadorNivel = "¡NIVEL EXTREMO!";
         colorTexto = "#e74c3c";
-        retoSeleccionado = retosRojos[Math.floor(Math.random() * retosRojos.length)];
-        
-        // La zona roja visual va del grado 342 al 360 (que es lo mismo que 0)
         rangoMin = 345;
         rangoMax = 355;
+
+        // Verificar si quedan retos rojos
+        if (retosRojos.length > 0) {
+            const indiceAleatorio = Math.floor(Math.random() * retosRojos.length);
+            retoSeleccionado = retosRojos[indiceAleatorio];
+            retosRojos.splice(indiceAleatorio, 1); // Extrae y elimina el reto de la lista
+        } else {
+            retoSeleccionado = "¡Ya completaron todos los retos Extremos!";
+        }
     }
 
     // Calcula el grado exacto dentro de la porción ganadora
     anguloObjetivo = Math.floor(Math.random() * (rangoMax - rangoMin + 1)) + rangoMin;
 
-    // Aseguramos que la ruleta dé al menos 5 vueltas completas (5 * 360 = 1800 grados) 
-    // y luego se detenga restando el anguloObjetivo (porque la ruleta gira en sentido horario)
+    // Calculamos las vueltas extra
     const vueltasExtra = 1800;
     currentRotation = currentRotation + vueltasExtra + (360 - anguloObjetivo) - (currentRotation % 360);
 
     // Aplicar la rotación visual vía CSS
     rouletteElement.style.transform = `rotate(${currentRotation}deg)`;
 
-    // 4. Mostrar el reto después de que termine la animación
-    // La animación dura 4000ms (4 segundos) según el CSS
+    // Mostrar el reto después de que termine la animación
     setTimeout(() => {
-        // Preparar la ventana modal
         modalLevel.innerText = ganadorNivel;
         modalLevel.style.color = colorTexto;
         modalText.innerText = retoSeleccionado;
         
-        // Mostrar la ventana quitándole la clase 'hidden'
         modal.classList.remove('hidden');
         
-        // Reactivar el botón de giro
         isSpinning = false;
         spinBtn.disabled = false;
-    }, 4200); // 4200ms para darle un pequeñísimo respiro después de frenar
+    }, 4200); 
+});
+
+// Cerrar la ventana modal
+closeModalBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
 });
 
 // 5. Cerrar la ventana modal
